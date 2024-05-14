@@ -14,6 +14,13 @@ private:
 	std::string email;
 public:
 	//simple getters
+	std::string Gpassword(){
+		return password;
+
+	}
+	std::string Gemail() {
+		return email;
+	}
 	std::string getName() {
 		return Name;
 	}
@@ -27,27 +34,7 @@ public:
 		Score = _score;
 	}
 public:
-	//setters------------------------------------------------------------------------------------------------------------------------
-	/*std::string changePassword(std::string s, std::string email_) {
-
-		query = "SELECT * FROM users WHERE email = '" + email_ + "'";
-		ConnCheck();
-		if (!qstate) {
-			t.res = mysql_store_result(t.conn);
-			if (s == t.row[2]) {
-				password = s;
-				return "password changed";
-			}
-			else {
-				return "passwords do not match";
-			}
-			mysql_close(t.conn);
-		}
-		else {
-			return "Query failed!";
-		}
-	}
-	*/
+	
 	std::string setName(std::string s) {
 		if (s.empty()) return "Name empty!";
 		Name = s;

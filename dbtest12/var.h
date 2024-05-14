@@ -10,6 +10,6 @@ int qstate = 0;
 
  //user score
 
- //class of user
+
 std::string query; //require to database
 const char* q; //hz

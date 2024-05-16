@@ -3,6 +3,10 @@
 #include <iostream>
 #include <string>
 #include "var.h"
+#include "cppconn/prepared_statement.h"
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
 class User {
 	
 	

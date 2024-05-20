@@ -138,14 +138,19 @@ std::string singUp() {
 	ConnCheck();
 	if (!qstate) {
 		user.login(Name, password, email, Score);
+		return "";
 	}
 	
-	return "abasd";
+	return "error";
 	
 	
 
 }
-
+void showdata() {
+	
+	std::cout << "Name: " << user.getName() << ", Score: " << user.getScore() << ", Email: " << user.Gemail() << ", Password: " << user.Gpassword() << std::endl;
+	
+}
 User& initClass() {
 	User user;
 	return user;
@@ -155,8 +160,8 @@ std::string parse(std::string& command) {//['/', 'l', 'o', 'g', 'i', 'n', ' ', ]
 	std::string val2 = "";							//  0    1    2    3    4    5    6   7
 	
 	if (command[0] == '/' && command[1] == 'l' && command[2] == 'o' && command[3] == 'g') {
-		
-		
+
+
 		int cnt = 7;
 		while (command[cnt] != ' ') {
 			val1 += command[cnt];
@@ -169,11 +174,16 @@ std::string parse(std::string& command) {//['/', 'l', 'o', 'g', 'i', 'n', ' ', ]
 
 		return logQuery(val1, val2);
 	}
+
 	else if (command[0] == '/' && command[1] == 's' && command[2] == 'i' && command[3] == 'n' && command[4] == 'g') {
 		return singUp();
 	}
+	else if (command[0] == '/' && command[1] == 's' && command[2] == 'h', command[3] == 'o');
 	
-	return "unknown command";
+	else if(command != "") {
+		return "unknown command";
+	}
+	return "";
 }
 
 
@@ -198,17 +208,20 @@ int main() {
 
 		
 		
-		while (command != "/exit") {
+		while (true) {
+			
 			std::getline(std::cin, command);
+			if (command == "/exit") {
+				break;
+			}
 			err = parse(command);
 
 			
-			if (err.empty()) {
-				std::cout << "Name: " << user.getName() << ", Score: " << user.getScore() << ", Email: " << user.Gemail() << ", Password: " << user.Gpassword() << std::endl;
-			}
-			else {
-				std::cout << err << std::endl;
-			}
+			
+			
+			std::cout << err << std::endl;
+			
+			
 		}
 		mysql_close(t.conn);
 		

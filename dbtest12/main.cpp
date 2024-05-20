@@ -3,10 +3,7 @@
 #include <string>
 #include "User.h"
 #include "var.h"
-#include "cppconn/prepared_statement.h"
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
+
 User user;
 
 table init() {
@@ -117,6 +114,37 @@ std::string logQuery(std::string email_, std::string password_) {
 	user.login(Name, password, email, Score);
 	return "";
 }
+//INSERT INTO users (email, username, password, score) VALUES ('example@ex.com', 'name', '123', 123);
+std::string singUp() {
+	std::string Name = "", password = "", email = "", temp = "jbsafgb23jbksd14asf@kljnsadlkn123gasgag*YSAVNnasja)S(AFknskagfnI@#N";
+	int Score = -1;
+	std::cout << "enter email: " << std::endl;
+	std::cin >> email;
+	std::cout << "enter username" << std::endl;
+	std::cin >> Name;
+	while(temp != password){
+		std::cout << "enter password" << std::endl;
+		std::cin >> password;
+		std::cout << "confirm password" << std::endl;
+		std::cin >> temp;
+		if (temp != password) {
+			std::cout << "passwords do not match" << std::endl;
+		}
+	}
+	std::cout << "enter score: " << std::endl;
+	std::cin >> Score;
+
+	query = "INSERT INTO users (email, username, password, score) VALUES ('" + email + "', '" + Name + "', '" + password + "', "+ std::to_string(Score) + ")";
+	ConnCheck();
+	if (!qstate) {
+		user.login(Name, password, email, Score);
+	}
+	
+	return "abasd";
+	
+	
+
+}
 
 User& initClass() {
 	User user;
@@ -125,6 +153,7 @@ User& initClass() {
 std::string parse(std::string& command) {//['/', 'l', 'o', 'g', 'i', 'n', ' ', ]
 	std::string val1 = "";
 	std::string val2 = "";							//  0    1    2    3    4    5    6   7
+	
 	if (command[0] == '/' && command[1] == 'l' && command[2] == 'o' && command[3] == 'g') {
 		
 		
@@ -140,6 +169,11 @@ std::string parse(std::string& command) {//['/', 'l', 'o', 'g', 'i', 'n', ' ', ]
 
 		return logQuery(val1, val2);
 	}
+	else if (command[0] == '/' && command[1] == 's' && command[2] == 'i' && command[3] == 'n' && command[4] == 'g') {
+		return singUp();
+	}
+	
+	return "unknown command";
 }
 
 

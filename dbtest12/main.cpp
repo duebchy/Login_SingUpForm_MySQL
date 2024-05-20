@@ -85,11 +85,11 @@ int addData(std::string name, int score, std::string password, std::string email
 */
 std::string logQuery(std::string email_, std::string password_) {
 	query = "SELECT * FROM users WHERE email = '" + email_ + "' AND password = " + password_ + "'";
-	
-	
+
+
 	ConnCheck();
-	
-	
+
+
 	int Score = -1;
 	std::string Name = "";
 	std::string password = "";
@@ -97,26 +97,27 @@ std::string logQuery(std::string email_, std::string password_) {
 	if (!qstate) {
 		t.res = mysql_store_result(t.conn);
 		while (t.row = mysql_fetch_row(t.res)) {
-			
+
 			email = t.row[1];
 			Name = t.row[2];
 			password = t.row[3];
 			Score = atoi(t.row[4]);
 		}
-		
+
 	}
-	
+
 	else {
 		std::cout << "Query failed" << mysql_error(t.conn) << std::endl;
 	}
 	if (Name == "") {
 		return "User doesn't exist";
 	}
-	mysql_close(t.conn);
-	query.clear();
+	
+	 
 	user.login(Name, password, email, Score);
 	return "";
 }
+
 User& initClass() {
 	User user;
 	return user;
@@ -153,6 +154,7 @@ int main() {
 	std::string command = "";
 	
 	
+
 	if (t.conn) {
 		
 		int Score = 0;
@@ -174,7 +176,7 @@ int main() {
 				std::cout << err << std::endl;
 			}
 		}
-		
+		mysql_close(t.conn);
 		
 
 		

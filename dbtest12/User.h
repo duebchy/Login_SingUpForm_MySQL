@@ -12,6 +12,7 @@ class User {
 	
 
 private:
+	int id = -1;
 	int Score = 0;
 	std::string Name;
 	std::string password;
@@ -54,7 +55,7 @@ public:
 	std::string setEmail(std::string s) {
 		email = s;
 	}
-	std::string setPassword(std::string s) {
+	void setPassword(std::string s) {
 		password = s;
 	}
 

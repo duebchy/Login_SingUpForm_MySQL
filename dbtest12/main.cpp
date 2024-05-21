@@ -41,7 +41,18 @@ void showData() {
 	}
 }
 
-
+//UPDATE users SET password = 'ad2' WHERE id = 8;
+std::string changePassword(std::string s) {
+	query = "UPDATE users SET password = '" + s + "' WHERE username = '" + user.getName() + "'";
+	ConnCheck();
+	if (!qstate) {
+		user.setPassword(s);
+		return "";
+	}
+	else {
+		return "error";
+	}
+}
 
 int addData(std::string name, int score, std::string password, std::string email, User user) {
 	query = "INSERT INTO users (name, score, password, email) VALUES ('" + user.getName() + "', '" + std::to_string(user.getScore()) + "', '"+ +"', '"+ +"')";
@@ -82,9 +93,8 @@ int addData(std::string name, int score, std::string password, std::string email
 */
 std::string logQuery(std::string email_, std::string password_) {
 	query = "SELECT * FROM users WHERE email = '" + email_ + "' AND password = " + password_ + "'";
-
-
 	ConnCheck();
+	
 
 
 	int Score = -1;
@@ -178,8 +188,18 @@ std::string parse(std::string& command) {//['/', 'l', 'o', 'g', 'i', 'n', ' ', ]
 	else if (command[0] == '/' && command[1] == 's' && command[2] == 'i' && command[3] == 'n' && command[4] == 'g') {
 		return singUp();
 	}
-	else if (command[0] == '/' && command[1] == 's' && command[2] == 'h', command[3] == 'o');
-	
+	else if (command[0] == '/' && command[1] == 's' && command[2] == 'h', command[3] == 'o') {
+		showdata();
+	}
+	else if (command[0] == '/' && command[1] == 'c' && command[2] == 'p') {
+		int cnt = 4;
+			while (cnt < command.length()) {
+				
+				val1 += command[cnt];
+				cnt++;
+		}
+		return changePassword(val1);
+	}
 	else if(command != "") {
 		return "unknown command";
 	}

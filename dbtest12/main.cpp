@@ -49,8 +49,7 @@ void help() {
 	std::cout << "/show - show data of logged user" << std::endl;
 	std::cout << "/help - show list of commands" << std::endl;
 }
-//UPDATE users SET password = 'ad2' WHERE id = 8;
-//UPDATE users SET username = 'bobr' WHERE username = 'negr';
+
 
 std::string changeName(std::string s) {
 	query = "UPDATE users SET username = '" + s + "' WHERE username = '" + user.getName() + "'";
@@ -179,7 +178,7 @@ std::string singUp() {
 }
 void showdata() {
 	
-	std::cout << "Name: " << user.getName() << ", Score: " << user.getScore() << ", Email: " << user.Gemail() << ", Password: " << user.Gpassword() << std::endl;
+	std::cout << "Name: " << user.getName() << ", Score: " << user.getScore() << ", Email: " << user.getEmail() << ", Password: " << user.getPassword() << std::endl;
 	
 }
 User& initClass() {

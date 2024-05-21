@@ -3,10 +3,7 @@
 #include <iostream>
 #include <string>
 #include "var.h"
-#include "cppconn/prepared_statement.h"
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
+
 class User {
 	
 	
@@ -19,11 +16,11 @@ private:
 	std::string email;
 public:
 	//simple getters
-	std::string Gpassword(){
+	std::string getPassword(){
 		return password;
 
 	}
-	std::string Gemail() {
+	std::string getEmail() {
 		return email;
 	}
 	std::string getName() {

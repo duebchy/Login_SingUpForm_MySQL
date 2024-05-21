@@ -9,10 +9,10 @@ This repository contains the code for a login and signup system using MySQL to m
 - Data storage in a MySQL database
 
 ## Technologies
-- C++
+- C/C++
 - MySQL
 - STL
-
+- CppUnitTestFramework
 ## Installation
 To get started with this project, follow these steps:
 1. Clone the repository to your local machine.

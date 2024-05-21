@@ -40,19 +40,19 @@ public:
 	}
 public:
 	
-	std::string setName(std::string s) {
-		if (s.empty()) return "Name empty!";
+	void setName(std::string s) {
+		
 		Name = s;
 		
 	}
 	
 	//getters------------------------------------------------------------------------------------------------------------------------
-	std::string setScore(int n) {
-		if (n < 0) return "Score out of range: score < 0";
+	void setScore(int n) {
+		
 		Score = n;
 	}
 	//...hzhz------------------------------------------------------------------------------------------------------------------------
-	std::string setEmail(std::string s) {
+	void setEmail(std::string s) {
 		email = s;
 	}
 	void setPassword(std::string s) {

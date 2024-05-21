@@ -40,8 +40,29 @@ void showData() {
 		std::cout << "Query failed" << mysql_error(t.conn) << std::endl;
 	}
 }
-
+void help() {
+	std::cout << "/sing - set up a new account" << std::endl;
+	std::cout << "/login - login in a existing account (/login example@email.com password)" << std::endl;
+	std::cout << "/cp - change password, login in acoount (/cp newpassword)" << std::endl;
+	std::cout << "/cn - change name, login in account(/cn newname)" << std::endl;
+	std::cout << "/exit - exit application" << std::endl;
+	std::cout << "/show - show data of logged user" << std::endl;
+	std::cout << "/help - show list of commands" << std::endl;
+}
 //UPDATE users SET password = 'ad2' WHERE id = 8;
+//UPDATE users SET username = 'bobr' WHERE username = 'negr';
+
+std::string changeName(std::string s) {
+	query = "UPDATE users SET username = '" + s + "' WHERE username = '" + user.getName() + "'";
+	ConnCheck();
+	if (!qstate) {
+		user.setName(s);
+		return "";
+	}
+	else {
+		return "error";
+	}
+}
 std::string changePassword(std::string s) {
 	query = "UPDATE users SET password = '" + s + "' WHERE username = '" + user.getName() + "'";
 	ConnCheck();
@@ -200,6 +221,17 @@ std::string parse(std::string& command) {//['/', 'l', 'o', 'g', 'i', 'n', ' ', ]
 		}
 		return changePassword(val1);
 	}
+	else if (command[0] == '/' && command[1] == 'h' && command[2] == 'e' && command[3] == 'l' && command[4] == 'p') {
+		help();
+	}
+	else if (command[0] == '/' && command[1] == 'c' && command[2] == 'n') {
+		int cnt = 4;
+		while (cnt < command.length()) {
+			val1 += command[cnt];
+			cnt++;
+		}
+		changeName(val1);
+	}
 	else if(command != "") {
 		return "unknown command";
 	}
@@ -226,7 +258,7 @@ int main() {
 		std::string password = "";
 		std::string email = "";
 
-		
+		help();
 		
 		while (true) {
 			

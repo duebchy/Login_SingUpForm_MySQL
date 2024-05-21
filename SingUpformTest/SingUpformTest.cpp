@@ -25,14 +25,20 @@ public:
 	int getScore() {
 		return Score;
 	}
-	void login(std::string _name, std::string _password, std::string _email, int _score) {
+	int getId() {
+		return id;
+	}
+	void login(std::string _name, std::string _password, std::string _email, int _score, int _id) {
 		Name = _name;
 		password = _password;
 		email = _email;
 		Score = _score;
+		id = _id;
 	}
 public:
-
+	void setId(int id_) {
+		id = id_;
+	}
 	void setName(std::string s) {
 
 		Name = s;
@@ -65,53 +71,63 @@ namespace SingUpformTest
 		TEST_METHOD(TestMethodGetName)
 		{
 			User user;
-			user.login("admin", "123456", "test@admin.com", 228);
+			user.login("admin", "123456", "test@admin.com", 228, 1);
 			Assert::IsTrue(user.getName() == "admin");
 		}
 		TEST_METHOD(TestMethodGetPassword)
 		{
 			User user;
-			user.login("admin", "123456", "test@admin.com", 228);
+			user.login("admin", "123456", "test@admin.com", 228, 1);
 			Assert::IsTrue(user.getPassword() == "123456");
 		}
 		TEST_METHOD(TestMethodGetEmail) {
 			User user;
-			user.login("admin", "123456", "test@admin.com", 228);
+			user.login("admin", "123456", "test@admin.com", 228, 1);
 			Assert::IsTrue(user.getEmail() == "test@admin.com");
 		}
 		TEST_METHOD(TestMethodGetScore) {
 			User user;
-			user.login("admin", "123456", "test@admin.com", 228);
+			user.login("admin", "123456", "test@admin.com", 228, 1);
 			Assert::IsTrue(user.getScore() == 228);
 
 		}
-
+		TEST_METHOD(TestMethodGetId) {
+			User user;
+			user.login("admin", "123456", "test@admin.com", 228, 1);
+			Assert::IsTrue(user.getId() == 1);
+		}
 
 
 		TEST_METHOD(TestMethodSetName) {
 			User user;
-			user.login("admin", "123456", "test@admin.com", 228);
+			user.login("admin", "123456", "test@admin.com", 228, 1);
 			user.setName("test@tes.test");
 			Assert::IsTrue(user.getName() == "test@tes.test");
 		}
 		TEST_METHOD(TestMethodSetPassword) {
 			User user;
-			user.login("admin", "123456", "test@admin.com", 228);
+			user.login("admin", "123456", "test@admin.com", 228, 1);
 			user.setPassword("111");
 			Assert::IsTrue(user.getPassword() == "111");
 		}
 		TEST_METHOD(TestMethodSetEmail) {
 			User user;
-			user.login("admin", "123456", "test@admin.com", 228);
+			user.login("admin", "123456", "test@admin.com", 228, 1);
 			user.setEmail("test@test.test");
 			Assert::IsTrue(user.getEmail() == "test@test.test");
 		}
 		TEST_METHOD(TestMethodSetScore) {
 			User user;
-			user.login("admin", "123456", "test@admin.com", 228);
+			user.login("admin", "123456", "test@admin.com", 228, 1);
 			user.setScore(1);
 			Assert::IsTrue(user.getScore() == 1);
 
+		}
+		TEST_METHOD(TestMethodSetId) {
+			User user;
+			user.login("admin", "123456", "test@admin.com", 228, 1);
+			user.setId(100);
+			Assert::IsTrue(user.getId() == 100);
 		}
 	};
 }

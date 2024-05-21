@@ -116,7 +116,7 @@ std::string logQuery(std::string email_, std::string password_) {
 	ConnCheck();
 	
 
-
+	int id = -1;
 	int Score = -1;
 	std::string Name = "";
 	std::string password = "";
@@ -124,7 +124,7 @@ std::string logQuery(std::string email_, std::string password_) {
 	if (!qstate) {
 		t.res = mysql_store_result(t.conn);
 		while (t.row = mysql_fetch_row(t.res)) {
-
+			id = atoi(t.row[0]);
 			email = t.row[1];
 			Name = t.row[2];
 			password = t.row[3];
@@ -141,13 +141,14 @@ std::string logQuery(std::string email_, std::string password_) {
 	}
 	
 	 
-	user.login(Name, password, email, Score);
+	user.login(Name, password, email, Score, id);
 	return "";
 }
 //INSERT INTO users (email, username, password, score) VALUES ('example@ex.com', 'name', '123', 123);
 std::string singUp() {
 	std::string Name = "", password = "", email = "", temp = "jbsafgb23jbksd14asf@kljnsadlkn123gasgag*YSAVNnasja)S(AFknskagfnI@#N";
 	int Score = -1;
+	int id = -1;
 	std::cout << "enter email: " << std::endl;
 	std::cin >> email;
 	std::cout << "enter username" << std::endl;
@@ -167,18 +168,27 @@ std::string singUp() {
 	query = "INSERT INTO users (email, username, password, score) VALUES ('" + email + "', '" + Name + "', '" + password + "', "+ std::to_string(Score) + ")";
 	ConnCheck();
 	if (!qstate) {
-		user.login(Name, password, email, Score);
-		return "";
+		user.login(Name, password, email, Score, NULL);
+		
 	}
-	
-	return "error";
-	
-	
 
+	query = "SELECT * FROM users WHERE email = '" + email + "'";
+	ConnCheck();
+	if (!qstate) {
+		t.res = mysql_store_result(t.conn);
+		while (t.row = mysql_fetch_row(t.res)) {
+			id = atoi(t.row[0]);
+			
+		}
+		user.setId(id);
+		return "";
+
+	}
+	return "error";
 }
 void showdata() {
 	
-	std::cout << "Name: " << user.getName() << ", Score: " << user.getScore() << ", Email: " << user.getEmail() << ", Password: " << user.getPassword() << std::endl;
+	std::cout << "Name: " << user.getName() << ", Score: " << user.getScore() << ", Email: " << user.getEmail() << ", Password: " << user.getPassword() << ", ID: " << user.getId() << std::endl;
 	
 }
 User& initClass() {
@@ -284,5 +294,7 @@ int main() {
 	}
 	
 	return 0;
+
+
 
 }

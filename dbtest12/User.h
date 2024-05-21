@@ -29,14 +29,20 @@ public:
 	int getScore() {
 		return Score;
 	}
-	void login(std::string _name, std::string _password, std::string _email, int _score) {
+	int getId() {
+		return id;
+	}
+	void login(std::string _name, std::string _password, std::string _email, int _score, int _id) {
 		Name = _name;
 		password = _password;
 		email = _email;
 		Score = _score;
+		id = _id;
 	}
 public:
-	
+	void setId(int id_) {
+		id = id_;
+	}
 	void setName(std::string s) {
 		
 		Name = s;

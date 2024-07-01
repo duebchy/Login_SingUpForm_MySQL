@@ -136,6 +136,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="table.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="var.h" />
   </ItemGroup>

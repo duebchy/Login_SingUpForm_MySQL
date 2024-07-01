@@ -11,5 +11,5 @@ int qstate = 0;
  //user score
 
 
-std::string query; //require to database
+
 const char* q; //hz

@@ -1,5 +1,5 @@
 #pragma once
-#include <mysql.h>
+
 #include <iostream>
 #include <string>
 #include "var.h"
@@ -65,9 +65,4 @@ public:
 };
 
 
-struct table {
-	MYSQL* conn;
-	MYSQL_ROW row;
-	MYSQL_RES* res;
-	
-};
+

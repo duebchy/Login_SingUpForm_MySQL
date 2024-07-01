@@ -3,7 +3,7 @@
 #include <string>
 #include "User.h"
 #include "var.h"
-
+#include "table.h"
 User user;
 
 table init() {
